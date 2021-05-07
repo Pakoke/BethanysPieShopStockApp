@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converter="clr-namespace:BethanysPieShopStockApp.Converter"
+             x:Class="BethanysPieShopStockApp.App">
+    <Application.Resources>
+        <converter:CurrencyConverter x:Key="LocalCurrencyConverter"></converter:CurrencyConverter>
+        <converter:DoubleToColorConverter x:Key="LocalDoubleToColorConverter"></converter:DoubleToColorConverter>
+        <converter:DoNothingConverter x:Key="LocalDoNothingConverter"></converter:DoNothingConverter>
+        
+        <Color x:Key="BethanysGreenColor">#22cfa7</Color>
+
+        <Style x:Key="RegularButtonStyle" TargetType="Button">
+            <Setter Property="HorizontalOptions" Value="Center"></Setter>
+            <Setter Property="VerticalOptions" Value="Start"></Setter>
+            <Setter Property="BackgroundColor" Value="{StaticResource BethanysGreenColor}"></Setter>
+            <Setter Property="TextColor" Value="White"></Setter>
+        </Style>
+
+        <Style x:Key="TitleLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="Large"></Setter>
+            <Setter Property="FontAttributes" Value="Bold"></Setter>
+            <Setter Property="HorizontalOptions" Value="Center"></Setter>
+            <Setter Property="VerticalOptions" Value="Center"></Setter>
+        </Style>
+
+        <Style x:Key="RegularEntry" TargetType="Entry">
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"></Setter>
+            <Setter Property="VerticalOptions" Value="Center"></Setter>
+        </Style>
+
+        <Style x:Key="RegularEditorStyle" TargetType="Editor">
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"></Setter>
+            <Setter Property="VerticalOptions" Value="Center"></Setter>
+            <Setter Property="FontSize" Value="Small"></Setter>
+        </Style>
+
+        <!-- Style inheritance -->
+        <Style x:Key="BaseLabelStyle" TargetType="Label">
+            <Setter Property="HorizontalOptions" Value="Start"></Setter>
+            <Setter Property="VerticalOptions" Value="Center"></Setter>
+            <Setter Property="TextColor" Value="DarkGray"></Setter>
+        </Style>
+
+        <Style x:Key="SmallLabelStyle" TargetType="Label" 
+               BasedOn="{StaticResource BaseLabelStyle}">
+            <Setter Property="FontSize" Value="Small"></Setter>
+        </Style>
+
+        <Style x:Key="MediumLabelStyle" TargetType="Label" 
+               BasedOn="{StaticResource BaseLabelStyle}">
+            <Setter Property="FontSize" Value="Medium"></Setter>
+        </Style>
+
+        <Style x:Key="LargeLabelStyle" TargetType="Label" 
+               BasedOn="{StaticResource BaseLabelStyle}">
+            <Setter Property="FontSize" Value="Large"></Setter>
+        </Style>
+
+        <DataTemplate x:Key="PiesListViewTemplate">
+            <ViewCell>
+                <Grid HeightRequest="70"  Margin="5" BackgroundColor="White" RowSpacing="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="50"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Row="0" HeightRequest="100" WidthRequest="100" VerticalOptions="Start" Margin="2,2,1,2" Source="{Binding ImageUrl}"></Image>
+                    <Label Grid.Row="0" Grid.Column="1" VerticalOptions="Start" Style="{StaticResource MediumLabelStyle}" Text="{Binding PieName}" Margin="3" ></Label>
+                    <Label Grid.Row="0" Grid.Column="2" Margin="3" Text="{Binding Price}" Style="{StaticResource SmallLabelStyle}" FontAttributes="Bold" HorizontalTextAlignment="End"></Label>
+                </Grid>
+            </ViewCell>
+        </DataTemplate>
+    </Application.Resources>
+</Application>
